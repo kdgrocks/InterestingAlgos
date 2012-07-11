@@ -6,24 +6,23 @@ typedef struct Node{
 	struct Node *pNext;
 }Node;
 
-Node * sFirst=NULL;
 
-Node * Insert(int nData){
+Node * Insert(int nData,Node* sRoot){
 	Node* sTemp=(Node *)malloc(sizeof(Node));
 	sTemp->m_Data=nData;
 	sTemp->pNext=NULL;
 	//printf("%d\n",nData );
-	if(sFirst==NULL)
+	if(sRoot==NULL)
 		return sTemp;
 	else {
-		sTemp->pNext=sFirst;
+		sTemp->pNext=sRoot;
 		return sTemp;
 	}
 
 
 }
 
-void Myprint(){
+void Myprint(Node *sFirst){
 	Node * sTemp=sFirst;
 	while(sTemp!=NULL){
 		printf("%d\n",sTemp->m_Data);
@@ -31,17 +30,18 @@ void Myprint(){
 	}
 }
 
-Node * Reverse(Node * sRoot){
+Node * Reverse(Node *sRoot,Node * sPrev){
+	Node* sTemp;
 	if(!sRoot)
 		return NULL;
 	if(sRoot->pNext!=NULL){
-		Reverse(sRoot->pNext);
-		sRoot->pNext->pNext=sRoot;
-		return sRoot;
+		sTemp=Reverse(sRoot->pNext,sRoot);
+		sRoot->pNext=sPrev;
+		return sTemp;
 	}
 	else{
-		sFirst=sRoot;
-		return NULL;
+		sRoot->pNext=sPrev;
+		return sRoot;
 	}
 
 }
@@ -49,18 +49,17 @@ Node * Reverse(Node * sRoot){
 
 int main(){
 	int i;
+	Node * sFirst=NULL;
 	Node * sHead=sFirst;
 	for (i = 0; i < 9; ++i)
 	{
-		sFirst=Insert(i);
+		sFirst=Insert(i,sFirst);
 	}
 	printf("Before Reversing;\n");
-	Myprint();
+	Myprint(sFirst);
 	printf("After Reversing;\n");
-	sHead=Reverse(sFirst);
-	if(sHead!=NULL)	
-		sHead->pNext=NULL;
-	Myprint();
+	sFirst=Reverse(sFirst,NULL);
+	Myprint(sFirst);
 
 
 
