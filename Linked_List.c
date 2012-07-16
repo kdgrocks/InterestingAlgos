@@ -1,13 +1,8 @@
+#include "Linked_List.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 #define MEM_PROBLEM 0
 #define EMPTY_LIST -1
-typedef struct Node {
-	struct Node * pNext;
-	int nData;
-}Node;
-
 int insertNode(Node ** Root, int ndata){
 	Node * temp=NULL;
 	temp=malloc(sizeof(Node));
@@ -19,7 +14,7 @@ int insertNode(Node ** Root, int ndata){
 	return 1;
 }
 
-int traverse(Node **Root){
+int Traverse(Node **Root){
 	Node * temp=*Root;
 	if (*Root==NULL)
 		return EMPTY_LIST;
@@ -54,7 +49,8 @@ int deleteNode(Node **Root,int ndata){
 	}
 	return -1;
 }
-int main(int argc, char const *argv[])
+
+/*int main(int argc, char const *argv[])
 {
 	Node *First=NULL;
 	int i=0;
@@ -63,9 +59,11 @@ int main(int argc, char const *argv[])
 		insertNode(&First,i);
 	}
 	printf("traverse\n");
-	traverse(&First);
+	Traverse(&First);
 	deleteNode(&First,2);
 	printf("Traverse -2 \n");
-	traverse(&First);
+	Traverse(&First);
 	return 0;
 }
+*/
+
