@@ -1,0 +1,5 @@
+In LinkedList problem 
+	had made some allocations for NULL(no list) also
+	head=first ; -----lot more -; then changin head; head still points to wher head points now.
+	make linked list for more than one elements
+	and if u are not returning pointer then you shd use Node **
